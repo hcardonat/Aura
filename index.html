@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d9488">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Shambala Casa de Playa - Guía de Bienvenida</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏖️</text></svg>">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(180deg, #ccfbf1 0%, #e0f2fe 50%, #fef3c7 100%);
+      min-height: 100vh;
+      line-height: 1.5;
+      color: #1f2937;
+    }
+    
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(90deg, #0d9488, #0891b2, #0284c7);
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      max-width: 32rem;
+      margin: 0 auto;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .header-subtitle {
+      font-size: 0.75rem;
+      color: #a5f3fc;
+      margin-top: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .header-right {
+      text-align: right;
+      font-size: 0.75rem;
+    }
+    
+    .header-right p {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      justify-content: flex-end;
+    }
+    
+    .header-right .secondary { color: #a5f3fc; }
+    
+    main {
+      max-width: 32rem;
+      margin: 0 auto;
+      padding: 1rem;
+      padding-bottom: 6rem;
+    }
+    
+    .section {
+      margin-bottom: 0.75rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    
+    .section.alert { box-shadow: 0 0 0 2px #f87171; }
+    
+    .section-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    
+    .section-header.normal {
+      background: white;
+      color: #1f2937;
+    }
+    
+    .section-header.normal:hover { background: #f0fdfa; }
+    
+    .section-header.alert-header {
+      background: linear-gradient(90deg, #ef4444, #f97316);
+      color: white;
+    }
+    
+    .section-header.warning-header {
+      background: linear-gradient(90deg, #f59e0b, #eab308);
+      color: white;
+    }
+    
+    .section-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .section-header-icon { font-size: 1.25rem; }
+    
+    .chevron {
+      transition: transform 0.3s;
+      font-size: 1.25rem;
+    }
+    
+    .section.open .chevron { transform: rotate(180deg); }
+    
+    .section-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: white;
+    }
+    
+    .section.alert .section-content { background: #fef2f2; }
+    .section.warning .section-content { background: #fffbeb; }
+    
+    .section.open .section-content { max-height: 2500px; }
+    
+    .section-inner { padding: 1rem; }
+    
+    .card {
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .card-gradient-teal { background: linear-gradient(135deg, #ccfbf1, #a5f3fc); }
+    .card-gradient-amber { background: linear-gradient(135deg, #fef3c7, #fed7aa); }
+    .card-gradient-blue { background: linear-gradient(135deg, #dbeafe, #cffafe); }
+    .card-gradient-cyan { background: linear-gradient(135deg, #cffafe, #dbeafe); }
+    
+    .card-gray { background: #f3f4f6; }
+    .card-teal { background: #ccfbf1; }
+    .card-blue { background: #eff6ff; }
+    .card-amber { background: #fef3c7; }
+    .card-red { background: #fef2f2; }
+    .card-green { background: #dcfce7; }
+    .card-purple { background: #f3e8ff; }
+    .card-cyan { background: #ecfeff; }
+    .card-orange { background: #fff7ed; }
+    
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1rem;
+      width: 100%;
+    }
+    
+    .btn-green { background: #22c55e; color: white; }
+    .btn-green:hover { background: #16a34a; }
+    
+    .btn-teal { background: #14b8a6; color: white; }
+    .btn-teal:hover { background: #0d9488; }
+    
+    .btn-blue { background: #3b82f6; color: white; }
+    .btn-blue:hover { background: #2563eb; }
+    
+    .btn-amber { background: #f59e0b; color: white; }
+    .btn-amber:hover { background: #d97706; }
+    
+    .info-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .info-icon { font-size: 1.25rem; flex-shrink: 0; }
+    
+    .route-card {
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid;
+    }
+    
+    .route-1 {
+      background: linear-gradient(90deg, #dcfce7, #d1fae5);
+      border-color: #22c55e;
+    }
+    
+    .route-2 {
+      background: linear-gradient(90deg, #fef3c7, #fde68a);
+      border-color: #f59e0b;
+    }
+    
+    .key-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #f3f4f6;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .key-icon { font-size: 1.5rem; }
+    .key-name { font-weight: 600; color: #1f2937; }
+    .key-desc { font-size: 0.875rem; color: #4b5563; }
+    
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    
+    .emergency-btn {
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      transition: all 0.2s;
+    }
+    
+    .emergency-btn:hover { transform: scale(1.02); }
+    
+    .emergency-red { background: #ef4444; }
+    .emergency-orange { background: #f97316; }
+    .emergency-yellow { background: #eab308; }
+    
+    .emergency-number { font-size: 1.5rem; font-weight: 700; }
+    .emergency-label { font-size: 0.875rem; }
+    
+    .water-alert {
+      background: #fee2e2;
+      border: 2px solid #f87171;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .water-alert-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .water-alert-title { font-size: 1.25rem; font-weight: 700; color: #b91c1c; }
+    
+    .activity-card {
+      background: linear-gradient(135deg, #ccfbf1, #ecfeff);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .activity-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    
+    .activity-icon {
+      background: #0d9488;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1.25rem;
+    }
+    
+    .activity-title { font-weight: 600; color: #1f2937; }
+    .activity-desc { font-size: 0.875rem; color: #4b5563; margin-top: 0.25rem; }
+    .activity-distance { font-size: 0.75rem; color: #0d9488; margin-top: 0.25rem; }
+    
+    .activity-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #16a34a;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .contact-card:hover { transform: translateX(4px); }
+    
+    .contact-name { font-weight: 600; color: #1f2937; }
+    .contact-desc { font-size: 0.875rem; color: #4b5563; }
+    .contact-phone { font-weight: 500; }
+    .contact-note { font-size: 0.75rem; color: #6b7280; font-style: italic; }
+    
+    .checkout-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: 2px solid transparent;
+      background: #f3f4f6;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+      text-align: left;
+      font-size: 1rem;
+    }
+    
+    .checkout-item:hover { background: #e5e7eb; }
+    
+    .checkout-item.checked {
+      background: #dcfce7;
+      border-color: #4ade80;
+    }
+    
+    .checkout-box {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #d1d5db;
+      color: white;
+      flex-shrink: 0;
+    }
+    
+    .checkout-item.checked .checkout-box { background: #22c55e; }
+    
+    .checkout-item.checked .checkout-label {
+      text-decoration: line-through;
+      color: #6b7280;
+    }
+    
+    .checkout-progress {
+      background: #fef3c7;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      text-align: center;
+      margin-top: 1rem;
+      color: #92400e;
+    }
+    
+    .checkout-complete {
+      background: #dcfce7;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    
+    .checkout-complete-text { color: #15803d; font-weight: 600; }
+    
+    .rule-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #f3f4f6;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .rule-icon { font-size: 1.25rem; }
+    .rule-text { font-size: 0.875rem; color: #374151; }
+    
+    .trash-section {
+      background: #f0fdf4;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid #22c55e;
+    }
+    
+    .footer-card {
+      background: linear-gradient(90deg, #0d9488, #0891b2, #0284c7);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      color: white;
+      margin-top: 1.5rem;
+    }
+    
+    .footer-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .footer-text { font-size: 0.875rem; color: #a5f3fc; }
+    .footer-signature { font-size: 0.75rem; color: #5eead4; margin-top: 0.75rem; }
+    
+    .floating-btn {
+      position: fixed;
+      bottom: 1rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+      z-index: 50;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    
+    .floating-btn:hover { transform: scale(1.1); }
+    
+    .floating-emergency {
+      right: 1rem;
+      background: #ef4444;
+      animation: pulse 2s infinite;
+    }
+    
+    .floating-contact {
+      left: 1rem;
+      background: #0d9488;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    }
+    
+    h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    h4 { font-size: 0.875rem; font-weight: 600; }
+    p { margin-bottom: 0.5rem; }
+    
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .text-center { text-align: center; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .font-medium { font-weight: 500; }
+    
+    .text-gray-500 { color: #6b7280; }
+    .text-gray-600 { color: #4b5563; }
+    .text-gray-700 { color: #374151; }
+    .text-gray-800 { color: #1f2937; }
+    .text-teal-600 { color: #0d9488; }
+    .text-teal-700 { color: #0f766e; }
+    .text-teal-800 { color: #115e59; }
+    .text-blue-600 { color: #2563eb; }
+    .text-blue-800 { color: #1e40af; }
+    .text-green-600 { color: #16a34a; }
+    .text-green-700 { color: #15803d; }
+    .text-amber-700 { color: #b45309; }
+    .text-amber-800 { color: #92400e; }
+    .text-red-600 { color: #dc2626; }
+    .text-red-700 { color: #b91c1c; }
+    .text-orange-700 { color: #c2410c; }
+    .text-cyan-700 { color: #0e7490; }
+    .text-purple-600 { color: #9333ea; }
+    
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    
+    .flex { display: flex; }
+    .items-center { align-items: center; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-2 { gap: 0.5rem; }
+    
+    ul { padding-left: 0; list-style: none; }
+    li { margin-bottom: 0.25rem; }
+    
+    .wifi-notice {
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border: 2px solid #f59e0b;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    
+    .wifi-notice-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .wifi-notice-title { font-weight: 700; color: #92400e; }
+  </style>
+</head>
+<body>
+
+  <!-- Header fijo -->
+  <header class="header">
+    <div class="header-content">
+      <div>
+        <h1>🏖️ Shambala Casa de Playa</h1>
+        <p class="header-subtitle">📍 Urbanización La Caracola - Lote 4</p>
+      </div>
+      <div class="header-right">
+        <p>🌊 Acceso directo playa</p>
+        <p class="secondary">📍 Km 8 vía Moñitos</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+
+    <!-- Bienvenida -->
+    <div class="section" id="sec-bienvenida">
+      <button class="section-header normal" onclick="toggleSection('sec-bienvenida')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🏠</span>
+          <span>Bienvenida</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <p class="text-center text-gray-700">
+            ¡Bienvenidos a <strong>Shambala Casa de Playa</strong>! Disfruten de este paraíso 
+            en San Bernardo del Viento con acceso directo a la playa. 🌴
+          </p>
+          
+          <div class="card card-gradient-teal mt-4">
+            <h3>❤️ Su Anfitriona</h3>
+            <p class="font-semibold text-gray-800">Aura Helena Prada G.</p>
+            
+            <a href="https://wa.me/573102050296" class="btn btn-green mt-3">
+              💬 WhatsApp: +57 310 205 0296
+            </a>
+            <a href="tel:3102050296" class="btn btn-teal mt-2">
+              📞 Llamar: 310 205 0296
+            </a>
+          </div>
+          
+          <div class="card card-amber mt-3">
+            <h4 class="text-amber-800 mb-2">🏠 Contacto para imprevistos</h4>
+            <p class="font-semibold text-gray-800">Juan Carlos Raveles</p>
+            <p class="text-sm text-gray-600">Persona de confianza - Vive en la casa de enfrente</p>
+            <a href="tel:3023076859" class="btn btn-amber mt-2">
+              📞 302 307 6859
+            </a>
+          </div>
+          
+          <div class="card card-gray">
+            <p class="text-sm text-gray-600">
+              📍 <strong>Ubicación:</strong> Urbanización La Caracola, Lote 4<br>
+              Km 8, vía San Bernardo del Viento - Moñitos, Córdoba
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cómo Llegar -->
+    <div class="section" id="sec-llegar">
+      <button class="section-header normal" onclick="toggleSection('sec-llegar')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🚗</span>
+          <span>Cómo Llegar</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <h4 class="text-gray-700 mb-3">Desde Montería hay dos rutas:</h4>
+          
+          <div class="route-card route-1">
+            <h4 class="text-green-700">✅ Ruta 1: Vía Santa Lucía (Recomendada)</h4>
+            <p class="text-sm text-gray-600 mt-2">
+              En construcción pero bastante adelantada. Sin huecos ni peajes, algunos tramos destapados en buen estado.
+            </p>
+            <div class="grid-2 mt-3 text-sm">
+              <p><strong>⏱️ Tiempo:</strong> ~1:30 h</p>
+              <p><strong>💰 Peajes:</strong> 0</p>
+            </div>
+          </div>
+          
+          <div class="route-card route-2">
+            <h4 class="text-amber-700">⚠️ Ruta 2: Vía Lorica</h4>
+            <p class="text-sm text-gray-600 mt-2">
+              Montería → Lorica → San Bernardo → Moñitos. Bien pavimentada hasta Lorica, pero mal estado entre Lorica y San Bernardo.
+            </p>
+            <div class="grid-2 mt-3 text-sm">
+              <p><strong>⏱️ Tiempo:</strong> ~1:45 h</p>
+              <p><strong>💰 Peajes:</strong> 2</p>
+            </div>
+          </div>
+          
+          <div class="card card-teal mt-3">
+            <h4 class="text-teal-700 mb-2">🚕 Sin carro propio</h4>
+            <p class="text-sm text-gray-600">
+              Coordinar con transportadores para recogerlos en el aeropuerto. 
+              Precio: <strong>$200,000 - $250,000 COP</strong> por trayecto (4 personas).
+              Pueden mercar en Montería o Lorica en el camino.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Llaves y Acceso -->
+    <div class="section" id="sec-llaves">
+      <button class="section-header normal" onclick="toggleSection('sec-llaves')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🔑</span>
+          <span>Llaves y Acceso</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="key-item">
+            <span class="key-icon">🚪</span>
+            <div>
+              <div class="key-name">Puerta azul peatonal</div>
+              <div class="key-desc">Llave en el llavero principal</div>
+            </div>
+          </div>
+          
+          <div class="key-item">
+            <span class="key-icon">🪟</span>
+            <div>
+              <div class="key-name">Puerta ventana sala</div>
+              <div class="key-desc">Llave en el llavero principal</div>
+            </div>
+          </div>
+          
+          <div class="key-item">
+            <span class="key-icon">🏖️</span>
+            <div>
+              <div class="key-name">Candado salida a playa</div>
+              <div class="key-desc">Llave pequeña plateada en mesa redonda de la sala</div>
+            </div>
+          </div>
+          
+          <div class="key-item">
+            <span class="key-icon">🚗</span>
+            <div>
+              <div class="key-name">Control acceso vehicular</div>
+              <div class="key-desc">Control cuadrado - Abre puerta de entrada a la urbanización</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WiFi / Conectividad -->
+    <div class="section warning" id="sec-wifi">
+      <button class="section-header warning-header" onclick="toggleSection('sec-wifi')">
+        <span class="section-header-left">
+          <span class="section-header-icon">📶</span>
+          <span>Conectividad</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="wifi-notice">
+            <div class="wifi-notice-icon">📵</div>
+            <div class="wifi-notice-title">NO hay WiFi en la casa</div>
+          </div>
+          
+          <div class="card card-teal mt-4">
+            <h4 class="text-teal-700 mb-2">📱 Alternativa: SIM Card Tigo</h4>
+            <p class="text-sm text-gray-600">
+              Hay una tarjeta SIM prepago Tigo disponible si la necesitan:
+            </p>
+            <p class="font-bold text-teal-800 text-center mt-2" style="font-size: 1.25rem;">
+              300 327 5813
+            </p>
+          </div>
+          
+          <div class="card card-amber mt-3">
+            <p class="text-sm text-amber-800">
+              <strong>📱 Mejor señal celular:</strong> Tigo tiene la mejor cobertura en la zona. 
+              Claro y Movistar tienen señal moderada.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGUA - ALERTA -->
+    <div class="section alert" id="sec-agua">
+      <button class="section-header alert-header" onclick="toggleSection('sec-agua')">
+        <span class="section-header-left">
+          <span class="section-header-icon">⚠️</span>
+          <span>AGUA - IMPORTANTE</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="water-alert">
+            <div class="water-alert-icon">⚠️</div>
+            <div class="water-alert-title">EL AGUA DEL GRIFO NO ES POTABLE</div>
+          </div>
+          
+          <div class="info-box card-red">
+            <span class="info-icon">❌</span>
+            <div>
+              <p class="font-semibold text-red-700">NO beber del grifo</p>
+              <p class="text-sm text-red-600">Ni agua de la ducha o llave</p>
+            </div>
+          </div>
+          
+          <div class="info-box card-green">
+            <span class="info-icon">✅</span>
+            <div>
+              <p class="font-semibold text-green-700">Solo usar para:</p>
+              <ul class="text-sm text-green-600 mt-2">
+                <li>• Ducharse</li>
+                <li>• Lavar platos</li>
+                <li>• Cocinar (hirviendo 5+ minutos)</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="info-box card-blue">
+            <span class="info-icon">💧</span>
+            <div>
+              <p class="font-semibold text-blue-800">Para beber:</p>
+              <p class="text-sm text-blue-600">
+                Hay un <strong>filtro de agua</strong> cuya llave está a la izquierda de la del lavaplatos. 
+                También pueden comprar agua embotellada en Montería o Lorica, o pedir domicilio a las tiendas locales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gas -->
+    <div class="section" id="sec-gas">
+      <button class="section-header normal" onclick="toggleSection('sec-gas')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🔥</span>
+          <span>Gas Propano</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="card card-orange">
+            <p class="text-sm text-orange-700">
+              La <strong>estufa</strong> y la <strong>secadora</strong> funcionan con gas propano. 
+              Cada servicio tiene su propia pipeta ubicada en la <strong>lavandería</strong>.
+            </p>
+          </div>
+          
+          <div class="card card-amber mt-3">
+            <h4 class="text-amber-800 mb-2">⚠️ Si se acaba el gas:</h4>
+            <a href="tel:3116546816" class="btn btn-amber">
+              📞 Leanis y Alexander: 311 654 6816
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basuras y Reciclaje -->
+    <div class="section" id="sec-basuras">
+      <button class="section-header normal" onclick="toggleSection('sec-basuras')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🗑️</span>
+          <span>Basuras y Reciclaje</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="trash-section">
+            <h4 class="text-green-700 mb-2">🗑️ Basura General</h4>
+            <p class="text-sm text-gray-600">
+              Sacar la basura y colocarla <strong>sobre la columna</strong> detrás de la canasta 
+              que está afuera de la puerta del parqueadero (para evitar que los perros la alcancen).
+            </p>
+            <p class="text-xs text-gray-500 mt-2">
+              📞 Avisar a Alexander Pájaro (conserje): 304 441 3378
+            </p>
+          </div>
+          
+          <div class="trash-section" style="border-color: #16a34a;">
+            <h4 class="text-green-700 mb-2">🥬 Basura Orgánica</h4>
+            <p class="text-sm text-gray-600">
+              Depositar en el <strong>recipiente redondo gris de plástico</strong> en la cocina. 
+              Luego ponerlas hacia el lado de las matas de plátano para que se degraden.
+            </p>
+          </div>
+          
+          <div class="trash-section" style="border-color: #0891b2; background: #ecfeff;">
+            <h4 class="text-cyan-700 mb-2">♻️ Reciclaje</h4>
+            <p class="text-sm text-gray-600 mb-2">
+              Se recicla: plástico, papel, cartón, latas de cerveza y botellas de vidrio.
+            </p>
+            <p class="text-sm text-gray-600">
+              Poner en los <strong>costales pequeños designados</strong> y dejar en la canasta de afuera.
+            </p>
+            <a href="tel:3022817233" class="activity-contact mt-2">
+              📞 Libardo Peinado (recoge reciclaje): 302 281 7233
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Playa -->
+    <div class="section" id="sec-playa">
+      <button class="section-header normal" onclick="toggleSection('sec-playa')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🏖️</span>
+          <span>Playa</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="card card-gradient-cyan">
+            <h4 class="text-teal-800 mb-2">🌊 Acceso a la Playa</h4>
+            <p class="text-sm text-gray-600">
+              La playa está a <strong>10 minutos caminando</strong> o <strong>2 minutos en carro</strong>. 
+              Usar la <strong>llave pequeña plateada</strong> (en la mesa redonda de la sala) para abrir el candado de la salida a la playa.
+            </p>
+          </div>
+          
+          <div class="card card-teal mt-3">
+            <h4 class="text-teal-800 mb-2">🏖️ Instalaciones de la Urbanización</h4>
+            <p class="text-sm text-gray-600">
+              Pueden usar <strong>2 kioskos</strong> y <strong>2 enramadas</strong> que pertenecen a la urbanización.
+            </p>
+          </div>
+          
+          <div class="card card-amber mt-3">
+            <h4 class="text-amber-800 mb-2">⚠️ Seguridad en el Mar</h4>
+            <ul class="text-sm text-gray-600">
+              <li>• No nadar solos, especialmente niños</li>
+              <li>• Cuidado con corrientes (preguntar a locales)</li>
+              <li>• No nadar bajo efectos del alcohol ni de noche</li>
+              <li>• No dejar basura en la playa</li>
+            </ul>
+          </div>
+          
+          <div class="card card-teal mt-3">
+            <p class="text-sm text-teal-800">
+              🏄 <strong>Surf:</strong> San Bernardo es famoso por sus olas. 
+              Hay escuelas de surf y alquiler de tablas disponibles.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Normas -->
+    <div class="section" id="sec-normas">
+      <button class="section-header normal" onclick="toggleSection('sec-normas')">
+        <span class="section-header-left">
+          <span class="section-header-icon">📋</span>
+          <span>Normas</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="rule-item">
+            <span class="rule-icon">🏊</span>
+            <span class="rule-text">Piscina abierta: 9:00 AM - 9:00 PM</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🔇</span>
+            <span class="rule-text">Horario de silencio: 10PM - 7AM</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🚗</span>
+            <span class="rule-text">Velocidad máxima: 20 km/h en la urbanización</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🎫</span>
+            <span class="rule-text">Identificarse con vigilancia al entrar</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🗑️</span>
+            <span class="rule-text">Basuras en columna (no en el piso)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🔥</span>
+            <span class="rule-text">Cerrar llave de gas después de usar</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🤝</span>
+            <span class="rule-text">Saludar y ser cortés con vecinos</span>
+          </div>
+          
+          <div class="card card-green mt-3">
+            <p class="text-sm text-green-700">
+              🛡️ <strong>Vigilancia:</strong> El conserje Alexander Pájaro (304 441 3378) 
+              vive en la urbanización.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergencias -->
+    <div class="section" id="sec-emergencias">
+      <button class="section-header normal" onclick="toggleSection('sec-emergencias')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🚨</span>
+          <span>Emergencias</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="emergency-grid">
+            <a href="tel:123" class="emergency-btn emergency-red">
+              <div class="emergency-number">123</div>
+              <div class="emergency-label">Policía</div>
+            </a>
+            <a href="tel:125" class="emergency-btn emergency-red">
+              <div class="emergency-number">125</div>
+              <div class="emergency-label">Ambulancia</div>
+            </a>
+            <a href="tel:119" class="emergency-btn emergency-orange">
+              <div class="emergency-number">119</div>
+              <div class="emergency-label">Bomberos</div>
+            </a>
+            <a href="tel:144" class="emergency-btn emergency-yellow">
+              <div class="emergency-number">144</div>
+              <div class="emergency-label">Defensa Civil</div>
+            </a>
+          </div>
+          
+          <div class="card card-teal mt-4">
+            <h4 class="text-teal-800 mb-2">🏠 Anfitriona</h4>
+            <a href="https://wa.me/573102050296" class="btn btn-green">
+              💬 Aura Helena: 310 205 0296
+            </a>
+          </div>
+          
+          <div class="card card-amber mt-3">
+            <h4 class="text-amber-800 mb-2">🔧 Contacto para imprevistos</h4>
+            <a href="tel:3023076859" class="btn btn-amber">
+              📞 Juan Carlos Raveles: 302 307 6859
+            </a>
+            <p class="text-xs text-gray-500 text-center mt-2">Vive en la casa de enfrente</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Restaurantes -->
+    <div class="section" id="sec-restaurantes">
+      <button class="section-header normal" onclick="toggleSection('sec-restaurantes')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🍽️</span>
+          <span>Restaurantes</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="activity-card" style="border-left: 4px solid #f59e0b;">
+            <div class="activity-header">
+              <span style="font-size: 1.5rem;">⭐</span>
+              <div>
+                <div class="activity-title">Hotel Los Tambos del Caribe</div>
+                <div class="activity-desc">Hotel y restaurante. Menú diario y comida a la carta. Mariscos frescos.</div>
+                <div class="activity-distance">📍 300m sobre la carretera a Moñitos (o por la playa)</div>
+                <a href="tel:3004113089" class="activity-contact">📞 300 411 3089</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="activity-card">
+            <div class="activity-header">
+              <span style="font-size: 1.5rem;">🌅</span>
+              <div>
+                <div class="activity-title">Hotel Mirador Bahía Rada</div>
+                <div class="activity-desc">Hotel y restaurante con bella vista. Menú diario y carta.</div>
+                <div class="activity-distance">📍 15 minutos en carro, vía Moñitos</div>
+                <a href="tel:3044481280" class="activity-contact">📞 304 448 1280</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="activity-card">
+            <div class="activity-header">
+              <span style="font-size: 1.5rem;">🍕</span>
+              <div>
+                <div class="activity-title">Súper Pizza San Bernardo</div>
+                <div class="activity-desc">Pizza. Nequi: 321 556 7419</div>
+                <a href="tel:3215567419" class="activity-contact">📞 321 556 7419</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="activity-card">
+            <div class="activity-header">
+              <span style="font-size: 1.5rem;">🍱</span>
+              <div>
+                <div class="activity-title">Jhamer Bravo - Almuerzos</div>
+                <div class="activity-desc">Almuerzos a domicilio</div>
+                <a href="tel:3014456141" class="activity-contact">📞 301 445 6141</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actividades -->
+    <div class="section" id="sec-actividades">
+      <button class="section-header normal" onclick="toggleSection('sec-actividades')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🎯</span>
+          <span>Paseos y Actividades</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="activity-card">
+            <div class="activity-header">
+              <div class="activity-icon">🐬</div>
+              <div>
+                <div class="activity-title">La Ciénaga</div>
+                <div class="activity-desc">Paseo por la ciénaga, avistamiento de chigüiros y fauna local.</div>
+                <a href="tel:3113936590" class="activity-contact">📞 Adonilson: 311 393 6590</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="activity-card">
+            <div class="activity-header">
+              <div class="activity-icon">🏝️</div>
+              <div>
+                <div class="activity-title">Isla Fuerte ⭐ IMPERDIBLE</div>
+                <div class="activity-desc">Paraíso caribeño. Snorkel, buceo, playas paradisíacas.</div>
+                <div class="activity-distance">Varios lancheros disponibles:</div>
+                <a href="tel:3022817233" class="activity-contact">📞 Libardo: 302 281 7233</a>
+                <a href="tel:3008535663" class="activity-contact">📞 Juan Carlos: 300 853 5663</a>
+                <a href="tel:3215406313" class="activity-contact">📞 Cleider: 321 540 6313</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="activity-card">
+            <div class="activity-header">
+              <div class="activity-icon">🌿</div>
+              <div>
+                <div class="activity-title">Paseo por los Manglares</div>
+                <div class="activity-desc">Manglares, espejos de agua, desembocadura del río Sinú.</div>
+                <a href="tel:3177381682" class="activity-contact">📞 317 738 1682</a>
+                <a href="tel:3112382471" class="activity-contact">📞 311 238 2471</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="activity-card">
+            <div class="activity-header">
+              <div class="activity-icon">🚤</div>
+              <div>
+                <div class="activity-title">Río Sinú y Bahía Cispatá</div>
+                <div class="activity-desc">Paseo por el río Sinú y la hermosa Bahía Cispatá.</div>
+                <a href="tel:3145025942" class="activity-contact">📞 Oswaldo Hernández: 314 502 5942</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card card-cyan mt-3">
+            <h4 class="text-cyan-700 mb-2">Más actividades en la zona:</h4>
+            <ul class="text-sm text-gray-600">
+              <li>🌋 Volcán de lodo (8.5 km hacia Moñitos)</li>
+              <li>⛵ Muelle turístico - Atardeceres y delfines</li>
+              <li>🏄 Escuelas de surf locales</li>
+              <li>🎨 Ruta Cultural: Lorica, Momil, Tuchín</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transporte -->
+    <div class="section" id="sec-transporte">
+      <button class="section-header normal" onclick="toggleSection('sec-transporte')">
+        <span class="section-header-left">
+          <span class="section-header-icon">🚗</span>
+          <span>Transporte</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <h4 class="text-gray-700 mb-3">Montería ↔ La Caracola:</h4>
+          
+          <a href="tel:3136417387" class="contact-card card-teal">
+            <div>
+              <div class="contact-name">⭐ Mario Villa</div>
+              <div class="contact-desc">Vive en Lorica - Persona de confianza</div>
+            </div>
+            <span class="contact-phone text-teal-600">313 641 7387</span>
+          </a>
+          
+          <a href="tel:3003398930" class="contact-card card-blue">
+            <div>
+              <div class="contact-name">Héctor (Taxi)</div>
+              <div class="contact-desc">Montería - Lorica - La Caracola</div>
+            </div>
+            <span class="contact-phone text-blue-600">300 339 8930</span>
+          </a>
+          
+          <a href="tel:3146838299" class="contact-card card-blue">
+            <div>
+              <div class="contact-name">Ricardo Correa (Taxi)</div>
+              <div class="contact-desc">Montería - Lorica - La Caracola</div>
+            </div>
+            <span class="contact-phone text-blue-600">314 683 8299</span>
+          </a>
+          
+          <a href="tel:3145131461" class="contact-card card-blue">
+            <div>
+              <div class="contact-name">Johnairo Mestra (Taxi)</div>
+              <div class="contact-desc">Montería - Lorica</div>
+            </div>
+            <span class="contact-phone text-blue-600">314 513 1461</span>
+          </a>
+          
+          <h4 class="text-gray-700 mt-4 mb-3">Lorica ↔ La Caracola:</h4>
+          
+          <a href="tel:3205552373" class="contact-card card-gray">
+            <div>
+              <div class="contact-name">Fabio</div>
+              <div class="contact-desc">Carro particular</div>
+            </div>
+            <span class="contact-phone text-gray-600">320 555 2373</span>
+          </a>
+          
+          <div class="card card-amber mt-3">
+            <p class="text-sm text-amber-800">
+              <strong>💰 Precio estimado Montería:</strong> $200,000 - $250,000 COP por trayecto (4 personas)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Servicios y Domicilios -->
+    <div class="section" id="sec-servicios">
+      <button class="section-header normal" onclick="toggleSection('sec-servicios')">
+        <span class="section-header-left">
+          <span class="section-header-icon">📞</span>
+          <span>Servicios y Domicilios</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <h4 class="text-gray-700 mb-3">👩‍🍳 Aseo y Cocina:</h4>
+          
+          <a href="tel:3022048383" class="contact-card card-purple">
+            <div>
+              <div class="contact-name">⭐ Janis Rojas</div>
+              <div class="contact-desc">Aseo y cocina - Vive enfrente - Persona de confianza</div>
+            </div>
+            <span class="contact-phone text-purple-600">302 204 8383</span>
+          </a>
+          
+          <a href="tel:3044413381" class="contact-card card-purple">
+            <div>
+              <div class="contact-name">Gloria Castro Mendoza</div>
+              <div class="contact-desc">Aseo y cocina</div>
+            </div>
+            <span class="contact-phone text-purple-600">304 441 3381</span>
+          </a>
+          
+          <a href="tel:3016385758" class="contact-card card-purple">
+            <div>
+              <div class="contact-name">Mónica</div>
+              <div class="contact-desc">Aseo y cocina</div>
+            </div>
+            <span class="contact-phone text-purple-600">301 638 5758</span>
+          </a>
+          
+          <h4 class="text-gray-700 mt-4 mb-3">🛵 Domicilios:</h4>
+          
+          <a href="tel:3113710525" class="contact-card card-green">
+            <div>
+              <div class="contact-name">Gordito (Mototaxi)</div>
+              <div class="contact-desc">Domicilios</div>
+            </div>
+            <span class="contact-phone text-green-600">311 371 0525</span>
+          </a>
+          
+          <a href="tel:3147061602" class="contact-card card-green">
+            <div>
+              <div class="contact-name">Julio Cesar</div>
+              <div class="contact-desc">Domicilios</div>
+            </div>
+            <span class="contact-phone text-green-600">314 706 1602</span>
+          </a>
+          
+          <h4 class="text-gray-700 mt-4 mb-3">🛒 Compras:</h4>
+          
+          <a href="tel:3116546816" class="contact-card card-cyan">
+            <div>
+              <div class="contact-name">Leanis y Alexander Montes</div>
+              <div class="contact-desc">Gas propano, vivero y pescado</div>
+            </div>
+            <span class="contact-phone text-cyan-700">311 654 6816</span>
+          </a>
+          
+          <a href="tel:3145364928" class="contact-card card-cyan">
+            <div>
+              <div class="contact-name">Devys (Gordis) - Pescadería</div>
+              <div class="contact-desc">Pescado fresco</div>
+            </div>
+            <span class="contact-phone text-cyan-700">314 536 4928</span>
+          </a>
+          
+          <a href="tel:3116490071" class="contact-card card-cyan">
+            <div>
+              <div class="contact-name">Carnes El Gordo</div>
+              <div class="contact-desc">Carnicería</div>
+            </div>
+            <span class="contact-phone text-cyan-700">311 649 0071</span>
+          </a>
+          
+          <a href="tel:3128538867" class="contact-card card-cyan">
+            <div>
+              <div class="contact-name">Granero El Campesino</div>
+              <div class="contact-desc">Granero</div>
+            </div>
+            <span class="contact-phone text-cyan-700">312 853 8867</span>
+          </a>
+          
+          <a href="tel:3108023296" class="contact-card card-cyan">
+            <div>
+              <div class="contact-name">Tienda La Bendición</div>
+              <div class="contact-desc">Víveres y productos de aseo - Domicilios</div>
+            </div>
+            <span class="contact-phone text-cyan-700">310 802 3296</span>
+          </a>
+          
+          <h4 class="text-gray-700 mt-4 mb-3">🔧 Otros:</h4>
+          
+          <a href="tel:3006531384" class="contact-card card-gray">
+            <div>
+              <div class="contact-name">Ferretería La Playa</div>
+              <div class="contact-desc">200m sobre la carretera a Moñitos - Domicilios</div>
+            </div>
+            <span class="contact-phone text-gray-600">300 653 1384</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Check-out -->
+    <div class="section" id="sec-checkout">
+      <button class="section-header normal" onclick="toggleSection('sec-checkout')">
+        <span class="section-header-left">
+          <span class="section-header-icon">✅</span>
+          <span>Check-out</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <p class="text-sm text-gray-600 mb-4">
+            Antes de salir, por favor verifique:
+          </p>
+          
+          <div id="checkout-list">
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Lavar y guardar toda la vajilla</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Sacar basura a la columna (avisar a Alexander)</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Separar y dejar reciclaje en costales</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Cerrar llave de gas (estufa y secadora)</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Apagar luces y ventiladores</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Cerrar puertas y ventanas</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Cerrar candado de salida a playa</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Dejar llaves según instrucciones</span>
+            </button>
+            <button class="checkout-item" onclick="toggleCheckout(this)">
+              <span class="checkout-box"></span>
+              <span class="checkout-label">Confirmar salida con anfitriona</span>
+            </button>
+          </div>
+          
+          <div id="checkout-progress" class="checkout-progress">
+            <span id="progress-count">0</span> de 9 completados
+          </div>
+          
+          <div id="checkout-complete" class="checkout-complete" style="display: none;">
+            <p class="checkout-complete-text">✅ ¡Todo listo! Gracias por su estadía en Shambala</p>
+            <a href="https://wa.me/573102050296?text=Hola%20Aura%20Helena!%20Ya%20salimos%20de%20Shambala.%20Todo%20qued%C3%B3%20en%20orden.%20Gracias!" class="btn btn-green mt-3" style="display: inline-flex; width: auto;">
+              💬 Confirmar salida con Aura Helena
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-card">
+      <div class="footer-title">🌴 ¡Disfruten su estadía! 🌴</div>
+      <div class="footer-text">Relájense, desconéctense y vivan el Caribe colombiano al máximo.</div>
+      <div class="footer-signature">Shambala Casa de Playa 🏖️</div>
+    </div>
+
+  </main>
+
+  <!-- Botones flotantes -->
+  <a href="tel:123" class="floating-btn floating-emergency" title="Emergencias 123">⚠️</a>
+  <a href="https://wa.me/573102050296" class="floating-btn floating-contact" title="WhatsApp Aura Helena">💬</a>
+
+  <script>
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      const allSections = document.querySelectorAll('.section');
+      
+      allSections.forEach(s => {
+        if (s.id !== sectionId) {
+          s.classList.remove('open');
+        }
+      });
+      
+      section.classList.toggle('open');
+    }
+    
+    function toggleCheckout(element) {
+      element.classList.toggle('checked');
+      
+      const box = element.querySelector('.checkout-box');
+      if (element.classList.contains('checked')) {
+        box.innerHTML = '✓';
+      } else {
+        box.innerHTML = '';
+      }
+      
+      updateCheckoutProgress();
+    }
+    
+    function updateCheckoutProgress() {
+      const items = document.querySelectorAll('.checkout-item');
+      const checked = document.querySelectorAll('.checkout-item.checked');
+      const count = checked.length;
+      const total = items.length;
+      
+      document.getElementById('progress-count').textContent = count;
+      
+      const progressDiv = document.getElementById('checkout-progress');
+      const completeDiv = document.getElementById('checkout-complete');
+      
+      if (count === total) {
+        progressDiv.style.display = 'none';
+        completeDiv.style.display = 'block';
+      } else {
+        progressDiv.style.display = 'block';
+        completeDiv.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
