@@ -694,10 +694,15 @@
           <div id="form-message" class="form-message" style="display: none;"></div>
           
           <form id="siat-form" onsubmit="submitForm(event)">
+            <div class="form-group">
+              <label class="form-label">Nombre Completo *</label>
+              <input type="text" name="Nombre_Completo" class="form-input" required>
+            </div>
+            
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Tipo de Identificación *</label>
-                <select name="tipo_id" class="form-select" required>
+                <label class="form-label">Tipo de Documento *</label>
+                <select name="Tipo_Documento" class="form-select" required>
                   <option value="">Seleccione...</option>
                   <option value="CC">Cédula de Ciudadanía</option>
                   <option value="CE">Cédula de Extranjería</option>
@@ -709,56 +714,74 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Número de Identificación *</label>
-                <input type="text" name="numero_id" class="form-input" required>
+                <label class="form-label">Número de Documento *</label>
+                <input type="text" name="Numero_Documento" class="form-input" required>
               </div>
             </div>
             
-            <div class="form-group">
-              <label class="form-label">Nombres y Apellidos *</label>
-              <input type="text" name="nombres" class="form-input" required>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Fecha de Nacimiento</label>
+                <input type="date" name="Fecha_Nacimiento" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nacionalidad</label>
+                <input type="text" name="Nacionalidad" class="form-input" placeholder="Ej: Colombiana">
+              </div>
             </div>
             
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">Ciudad de Residencia *</label>
-                <input type="text" name="ciudad_residencia" class="form-input" required>
+                <input type="text" name="Ciudad_Residencia" class="form-input" required>
               </div>
               <div class="form-group">
-                <label class="form-label">Ciudad de Procedencia *</label>
-                <input type="text" name="ciudad_procedencia" class="form-input" required>
+                <label class="form-label">País de Residencia</label>
+                <input type="text" name="Pais_Residencia" class="form-input" value="Colombia">
               </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">Nº Acompañantes *</label>
-              <input type="number" name="acompanantes" class="form-input" min="0" value="0" required>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">Principal Motivo de Viaje *</label>
-              <select name="motivo_viaje" class="form-select" required>
-                <option value="">Seleccione...</option>
-                <option value="Vacaciones, recreo y ocio">Vacaciones, recreo y ocio</option>
-                <option value="Visitas a familiares o amigos">Visitas a familiares o amigos</option>
-                <option value="Negocios y motivos profesionales">Negocios y motivos profesionales</option>
-                <option value="Educación y formación">Educación y formación</option>
-                <option value="Salud y atención médica">Salud y atención médica</option>
-                <option value="Religión y peregrinaciones">Religión y peregrinaciones</option>
-                <option value="Compras">Compras</option>
-                <option value="Tránsito">Tránsito</option>
-                <option value="Otros motivos">Otros motivos</option>
-              </select>
             </div>
             
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Fecha Check-In *</label>
-                <input type="date" name="check_in" class="form-input" required>
+                <label class="form-label">Teléfono</label>
+                <input type="tel" name="Telefono" class="form-input" placeholder="Ej: 3001234567">
               </div>
               <div class="form-group">
-                <label class="form-label">Fecha Check-Out *</label>
-                <input type="date" name="check_out" class="form-input" required>
+                <label class="form-label">Email</label>
+                <input type="email" name="Email" class="form-input" placeholder="correo@ejemplo.com">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Fecha de Llegada *</label>
+                <input type="date" name="Fecha_Llegada" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Fecha de Salida *</label>
+                <input type="date" name="Fecha_Salida" class="form-input" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nº Acompañantes *</label>
+                <input type="number" name="Num_Acompanantes" class="form-input" min="0" value="0" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Motivo de Viaje *</label>
+                <select name="Motivo_Viaje" class="form-select" required>
+                  <option value="">Seleccione...</option>
+                  <option value="Vacaciones, recreo y ocio">Vacaciones, recreo y ocio</option>
+                  <option value="Visitas a familiares o amigos">Visitas a familiares o amigos</option>
+                  <option value="Negocios y motivos profesionales">Negocios y motivos profesionales</option>
+                  <option value="Educación y formación">Educación y formación</option>
+                  <option value="Salud y atención médica">Salud y atención médica</option>
+                  <option value="Religión y peregrinaciones">Religión y peregrinaciones</option>
+                  <option value="Compras">Compras</option>
+                  <option value="Tránsito">Tránsito</option>
+                  <option value="Otros motivos">Otros motivos</option>
+                </select>
               </div>
             </div>
             
@@ -1616,11 +1639,11 @@
       const btnText = document.getElementById('btn-text');
       const btnSpinner = document.getElementById('btn-spinner');
       
-      const checkIn = new Date(form.check_in.value);
-      const checkOut = new Date(form.check_out.value);
+      const fechaLlegada = new Date(form.Fecha_Llegada.value);
+      const fechaSalida = new Date(form.Fecha_Salida.value);
       
-      if (checkOut <= checkIn) {
-        showMessage('error', 'La fecha de check-out debe ser posterior al check-in');
+      if (fechaSalida <= fechaLlegada) {
+        showMessage('error', 'La fecha de salida debe ser posterior a la fecha de llegada');
         return;
       }
       
@@ -1629,17 +1652,20 @@
       btnSpinner.style.display = 'block';
       
       const formData = {
-        timestamp: new Date().toISOString(),
-        propiedad: 'Shambala Casa de Playa',
-        tipo_id: form.tipo_id.value,
-        numero_id: form.numero_id.value,
-        nombres: form.nombres.value,
-        ciudad_residencia: form.ciudad_residencia.value,
-        ciudad_procedencia: form.ciudad_procedencia.value,
-        acompanantes: form.acompanantes.value,
-        motivo_viaje: form.motivo_viaje.value,
-        check_in: form.check_in.value,
-        check_out: form.check_out.value
+        Fecha_Registro: new Date().toISOString(),
+        Nombre_Completo: form.Nombre_Completo.value,
+        Tipo_Documento: form.Tipo_Documento.value,
+        Numero_Documento: form.Numero_Documento.value,
+        Fecha_Nacimiento: form.Fecha_Nacimiento.value || '',
+        Nacionalidad: form.Nacionalidad.value || '',
+        Ciudad_Residencia: form.Ciudad_Residencia.value,
+        Pais_Residencia: form.Pais_Residencia.value || '',
+        Telefono: form.Telefono.value || '',
+        Email: form.Email.value || '',
+        Fecha_Llegada: form.Fecha_Llegada.value,
+        Fecha_Salida: form.Fecha_Salida.value,
+        Num_Acompanantes: form.Num_Acompanantes.value,
+        Motivo_Viaje: form.Motivo_Viaje.value
       };
       
       try {
@@ -1652,7 +1678,8 @@
         
         showMessage('success', '✅ ¡Registro enviado correctamente! Gracias.');
         form.reset();
-        form.acompanantes.value = '0';
+        form.Num_Acompanantes.value = '0';
+        form.Pais_Residencia.value = 'Colombia';
         
       } catch (error) {
         showMessage('error', '❌ Error al enviar. Por favor intente de nuevo.');
@@ -1680,13 +1707,13 @@
     // Configurar fechas mínimas
     document.addEventListener('DOMContentLoaded', function() {
       const today = new Date().toISOString().split('T')[0];
-      const checkInInput = document.querySelector('input[name="check_in"]');
-      const checkOutInput = document.querySelector('input[name="check_out"]');
+      const fechaLlegadaInput = document.querySelector('input[name="Fecha_Llegada"]');
+      const fechaSalidaInput = document.querySelector('input[name="Fecha_Salida"]');
       
-      if (checkInInput) {
-        checkInInput.min = today;
-        checkInInput.addEventListener('change', function() {
-          checkOutInput.min = this.value;
+      if (fechaLlegadaInput) {
+        fechaLlegadaInput.min = today;
+        fechaLlegadaInput.addEventListener('change', function() {
+          fechaSalidaInput.min = this.value;
         });
       }
     });
