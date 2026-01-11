@@ -116,6 +116,11 @@
       color: white;
     }
     
+    .section-header.info-header {
+      background: linear-gradient(90deg, #06b6d4, #0891b2);
+      color: white;
+    }
+    
     .section-header-left {
       display: flex;
       align-items: center;
@@ -513,6 +518,96 @@
     
     .wifi-notice-icon { font-size: 2rem; margin-bottom: 0.5rem; }
     .wifi-notice-title { font-weight: 700; color: #92400e; }
+
+    /* Estilos del formulario SIAT */
+    .form-group { margin-bottom: 1rem; }
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.25rem;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: white;
+    }
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: #06b6d4;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    @media (max-width: 400px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 0.875rem;
+      background: linear-gradient(90deg, #06b6d4, #0891b2);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-submit:hover { background: linear-gradient(90deg, #0891b2, #0e7490); }
+    .btn-submit:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+    .form-message {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    .form-message.success {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .form-message.error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+    .legal-notice {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background: #f9fafb;
+      border-radius: 0.25rem;
+    }
+    .spinner {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid #ffffff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -576,6 +671,156 @@
               📍 <strong>Ubicación:</strong> Urbanización La Caracola, Lote 4<br>
               Km 8, vía San Bernardo del Viento - Moñitos, Córdoba
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registro de Huéspedes (SIAT) -->
+    <div class="section" id="sec-registro">
+      <button class="section-header info-header" onclick="toggleSection('sec-registro')">
+        <span class="section-header-left">
+          <span class="section-header-icon">📋</span>
+          <span>Registro de Huéspedes (SIAT)</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <p class="text-sm text-gray-600 mb-4">
+            Por favor complete este registro obligatorio del Ministerio de Comercio, Industria y Turismo.
+          </p>
+          
+          <div id="form-message" class="form-message" style="display: none;"></div>
+          
+          <form id="siat-form" onsubmit="submitForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Tipo de Identificación *</label>
+                <select name="tipo_id" class="form-select" required>
+                  <option value="">Seleccione...</option>
+                  <option value="CC">Cédula de Ciudadanía</option>
+                  <option value="CE">Cédula de Extranjería</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                  <option value="PEP">PEP</option>
+                  <option value="DNI">DNI</option>
+                  <option value="TI">Tarjeta de Identidad</option>
+                  <option value="RC">Registro Civil</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Número de Identificación *</label>
+                <input type="text" name="numero_id" class="form-input" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Nombres y Apellidos *</label>
+              <input type="text" name="nombres" class="form-input" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Ciudad de Residencia *</label>
+                <input type="text" name="ciudad_residencia" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ciudad de Procedencia *</label>
+                <input type="text" name="ciudad_procedencia" class="form-input" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Nº Acompañantes *</label>
+              <input type="number" name="acompanantes" class="form-input" min="0" value="0" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Principal Motivo de Viaje *</label>
+              <select name="motivo_viaje" class="form-select" required>
+                <option value="">Seleccione...</option>
+                <option value="Vacaciones, recreo y ocio">Vacaciones, recreo y ocio</option>
+                <option value="Visitas a familiares o amigos">Visitas a familiares o amigos</option>
+                <option value="Negocios y motivos profesionales">Negocios y motivos profesionales</option>
+                <option value="Educación y formación">Educación y formación</option>
+                <option value="Salud y atención médica">Salud y atención médica</option>
+                <option value="Religión y peregrinaciones">Religión y peregrinaciones</option>
+                <option value="Compras">Compras</option>
+                <option value="Tránsito">Tránsito</option>
+                <option value="Otros motivos">Otros motivos</option>
+              </select>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Fecha Check-In *</label>
+                <input type="date" name="check_in" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Fecha Check-Out *</label>
+                <input type="date" name="check_out" class="form-input" required>
+              </div>
+            </div>
+            
+            
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span id="btn-text">📤 Enviar Registro</span>
+              <span id="btn-spinner" class="spinner" style="display: none;"></span>
+            </button>
+          </form>
+          
+          <p class="legal-notice">
+            🔒 Datos protegidos según Ley 1581 de 2012. Uso exclusivo para registro turístico MinCIT.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alertas Importantes - AGUA -->
+    <div class="section alert" id="sec-agua">
+      <button class="section-header alert-header" onclick="toggleSection('sec-agua')">
+        <span class="section-header-left">
+          <span class="section-header-icon">⚠️</span>
+          <span>AGUA - IMPORTANTE</span>
+        </span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="water-alert">
+            <div class="water-alert-icon">⚠️</div>
+            <div class="water-alert-title">EL AGUA DEL GRIFO NO ES POTABLE</div>
+          </div>
+          
+          <div class="info-box card-red">
+            <span class="info-icon">❌</span>
+            <div>
+              <p class="font-semibold text-red-700">NO beber del grifo</p>
+              <p class="text-sm text-red-600">Ni agua de la ducha o llave</p>
+            </div>
+          </div>
+          
+          <div class="info-box card-green">
+            <span class="info-icon">✅</span>
+            <div>
+              <p class="font-semibold text-green-700">Solo usar para:</p>
+              <ul class="text-sm text-green-600 mt-2">
+                <li>• Ducharse</li>
+                <li>• Lavar platos</li>
+                <li>• Cocinar (hirviendo 5+ minutos)</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="info-box card-blue">
+            <span class="info-icon">💧</span>
+            <div>
+              <p class="font-semibold text-blue-800">Para beber:</p>
+              <p class="text-sm text-blue-600">
+                Hay un <strong>filtro de agua</strong> cuya llave está a la izquierda de la del lavaplatos. 
+                También pueden comprar agua embotellada en Montería o Lorica, o pedir domicilio a las tiendas locales.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -705,56 +950,6 @@
               <strong>📱 Mejor señal celular:</strong> Tigo tiene la mejor cobertura en la zona. 
               Claro y Movistar tienen señal moderada.
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- AGUA - ALERTA -->
-    <div class="section alert" id="sec-agua">
-      <button class="section-header alert-header" onclick="toggleSection('sec-agua')">
-        <span class="section-header-left">
-          <span class="section-header-icon">⚠️</span>
-          <span>AGUA - IMPORTANTE</span>
-        </span>
-        <span class="chevron">▼</span>
-      </button>
-      <div class="section-content">
-        <div class="section-inner">
-          <div class="water-alert">
-            <div class="water-alert-icon">⚠️</div>
-            <div class="water-alert-title">EL AGUA DEL GRIFO NO ES POTABLE</div>
-          </div>
-          
-          <div class="info-box card-red">
-            <span class="info-icon">❌</span>
-            <div>
-              <p class="font-semibold text-red-700">NO beber del grifo</p>
-              <p class="text-sm text-red-600">Ni agua de la ducha o llave</p>
-            </div>
-          </div>
-          
-          <div class="info-box card-green">
-            <span class="info-icon">✅</span>
-            <div>
-              <p class="font-semibold text-green-700">Solo usar para:</p>
-              <ul class="text-sm text-green-600 mt-2">
-                <li>• Ducharse</li>
-                <li>• Lavar platos</li>
-                <li>• Cocinar (hirviendo 5+ minutos)</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="info-box card-blue">
-            <span class="info-icon">💧</span>
-            <div>
-              <p class="font-semibold text-blue-800">Para beber:</p>
-              <p class="text-sm text-blue-600">
-                Hay un <strong>filtro de agua</strong> cuya llave está a la izquierda de la del lavaplatos. 
-                También pueden comprar agua embotellada en Montería o Lorica, o pedir domicilio a las tiendas locales.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -1411,6 +1606,90 @@
         completeDiv.style.display = 'none';
       }
     }
+
+    // Funciones del formulario SIAT
+    async function submitForm(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('siat-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnSpinner = document.getElementById('btn-spinner');
+      
+      const checkIn = new Date(form.check_in.value);
+      const checkOut = new Date(form.check_out.value);
+      
+      if (checkOut <= checkIn) {
+        showMessage('error', 'La fecha de check-out debe ser posterior al check-in');
+        return;
+      }
+      
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnSpinner.style.display = 'block';
+      
+      const formData = {
+        timestamp: new Date().toISOString(),
+        propiedad: 'Shambala Casa de Playa',
+        tipo_id: form.tipo_id.value,
+        numero_id: form.numero_id.value,
+        nombres: form.nombres.value,
+        ciudad_residencia: form.ciudad_residencia.value,
+        ciudad_procedencia: form.ciudad_procedencia.value,
+        acompanantes: form.acompanantes.value,
+        motivo_viaje: form.motivo_viaje.value,
+        check_in: form.check_in.value,
+        check_out: form.check_out.value
+      };
+      
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbz0TLjJUJusKgC98XU456mtdU--TNgihm5l8jZ0uQweYkJJ9BXHGp2kmrFt1h_NYwZD/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        showMessage('success', '✅ ¡Registro enviado correctamente! Gracias.');
+        form.reset();
+        form.acompanantes.value = '0';
+        
+      } catch (error) {
+        showMessage('error', '❌ Error al enviar. Por favor intente de nuevo.');
+      } finally {
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnSpinner.style.display = 'none';
+      }
+    }
+    
+    function showMessage(type, text) {
+      const messageDiv = document.getElementById('form-message');
+      messageDiv.textContent = text;
+      messageDiv.className = 'form-message ' + type;
+      messageDiv.style.display = 'block';
+      messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      if (type === 'success') {
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 5000);
+      }
+    }
+    
+    // Configurar fechas mínimas
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      const checkInInput = document.querySelector('input[name="check_in"]');
+      const checkOutInput = document.querySelector('input[name="check_out"]');
+      
+      if (checkInInput) {
+        checkInInput.min = today;
+        checkInInput.addEventListener('change', function() {
+          checkOutInput.min = this.value;
+        });
+      }
+    });
   </script>
 
 </body>
